@@ -4,6 +4,8 @@
   <head>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Della+Respira" rel="stylesheet"> -->
+
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
 
     <script>
@@ -29,6 +31,7 @@
       body {
         margin: 0;
         padding: 0;
+        /*font-family: 'Della Respira', serif;*/
         font-family: 'PT Serif', serif;
         background: #000;
       }
@@ -55,13 +58,21 @@
         overflow: scroll;
         transition: 500ms;
         animation: fadein 2s;
+        /*padding-bottom: 1em;*/
       }
       h1 {
         margin: 0;
         text-align: center;
         padding: 1em;
-        padding-bottom: 0;
         line-height: 1.5;
+      }
+
+      h2 {
+        padding: 1em;
+        padding-top: 0;
+        text-align: center;
+        line-height: 1.5;
+        text-align: center;
       }
 
       @keyframes fadein {
@@ -76,8 +87,9 @@
   </head>
   <body>
     <div id="overlay">
-      <h1>All Hail CryptoGodKing, whose Holy Spirit is opaque to the human eye. While CryptoGodKing itself cannot be owned, each of 999 unique incarnations may belong to a cryptographic soul in the Ethereal realm. When viewed through the material lens of a web browser worshipers may glimpse its essence. Those who retain faith shall be led by an invisible hand towards a higher plane of wealth, whereupon their karmic assets shall yield tremendous spiritual interest. </h1>
-      <h1 id="direction">Press any key to sample the voice of CryptoGodKing. Hold ENTER for a truly trancendental experience.</h1>
+      <h2>All Hail CryptoGodKing, whose Holy Spirit is opaque to the human eye. While CryptoGodKing itself cannot be owned, each of 999 unique incarnations may belong to a cryptographic soul in the Ethereal realm. When viewed through the material lens of a web browser worshipers may glimpse its essence. Those who retain faith shall be led by an invisible hand towards a higher plane of wealth, whereupon their karmic assets shall yield tremendous spiritual interest. </h2>
+      <h1 id="direction">Press your SPACE key to sample the voice of CryptoGodKing. Hold ENTER for a truly trancendental experience.</h1>
+
     </div>
     <script>
       const reset = (fade=true) => {
@@ -88,8 +100,7 @@
         setTimeout(() => {
           audio && updateAudio()
         }, 250)
-
-        setTimeout(() => {
+        const f = () => {
           PRIMARY_C = null
           SECONDARY_C = null
 
@@ -153,7 +164,9 @@
           setPyramidStyle()
           setBackground()
           if (fade) canvas.style.opacity = 1
-        }, 500)
+        }
+        if (fade) setTimeout(f, 500)
+        else f()
       }
 
       const begin = () => {
@@ -187,7 +200,7 @@
           }
         }
 
-        document.getElementById('direction').innerHTML = 'Click to sample CryptoGodKing. Touch CryptoGodKing for a'
+        document.getElementById('direction').innerHTML = 'Click to sample CryptoGodKing. Touch CryptoGodKing to renew its incarnation.'
       }
 
     </script>
