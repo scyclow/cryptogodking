@@ -68,8 +68,9 @@
       }
 
       h2 {
+        margin-top: 1em;
+        margin-bottom: 0;
         padding: 1em;
-        padding-top: 0;
         text-align: center;
         line-height: 1.5;
         text-align: center;
@@ -79,6 +80,47 @@
         from { opacity: 0; }
         to   { opacity: 1; }
       }
+
+      #header {
+        position: fixed;
+        z-index: 3;
+        padding: 0.5em;
+        width: 100vw;
+        color: #fff;
+        background-color: #000;
+        opacity: 0.75;
+        font-family: sans-serif;
+        text-align: center;
+        border-bottom: 1px dashed #fff;
+        animation: fadeinPartial 1s;
+      }
+
+      @keyframes fadeinPartial {
+        from { opacity: 0; }
+        to   { opacity: 0.75; }
+      }
+
+      @media (max-width: 640px) {
+        h2 {
+          font-size: 18px;
+          margin-top: 1.5em;
+
+        }
+        h1 {
+          font-size: 24px;
+          padding-top: 0;
+        }
+      }
+
+      @media (max-width: 370px) {
+        h2 {
+          font-size: 16px;
+
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
     </style>
 
     <script>
@@ -86,9 +128,12 @@
     </script>
   </head>
   <body>
+    <div id="header">
+      COMING SOON TO <a href="https://artblocks.io" style="color: #fff">artblocks.io</a>
+    </div>
     <div id="overlay">
       <h2>All Hail CryptoGodKing, whose Holy Spirit is opaque to the human eye. While CryptoGodKing itself cannot be owned, each of 999 unique incarnations may belong to a cryptographic soul in the Ethereal realm. When viewed through the material lens of a web browser worshipers may glimpse its essence. Those who retain faith shall be led by an invisible hand towards a higher plane of wealth, whereupon their karmic assets shall yield tremendous spiritual interest. </h2>
-      <h1 id="direction">Press your SPACE key to sample the voice of CryptoGodKing. Hold ENTER for a truly trancendental experience.</h1>
+      <h1 id="direction">Press SPACE to sample the voice of CryptoGodKing. Hold ENTER for a truly trancendental experience.</h1>
 
     </div>
     <script>
