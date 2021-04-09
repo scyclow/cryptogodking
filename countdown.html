@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CryptoGodKing</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta id="header-theme" name="theme-color" content="#000000">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Della+Respira" rel="stylesheet">
+
+    <meta charset="utf-8">
+
+    <meta name="description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+    <meta name="twitter:image" content="./flyer2.png">
+    <meta name="og:image" property="og:image" content="./flyer2.png">
+    <meta name="og:image:alt" content="CryptoGodKing #0">
+    <meta name="description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+    <meta name="og:description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+    <meta name="twitter:description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+
+    <meta name="keywords" content="art, nft, nfts, NFTs, NFT, crypto, ethereum, bitcoin, blockchain, artblocks, artblocks.io, generative, generative art, algorithmic art, crypto, god, king, cryptogodking, steviep.xyz, steve, pikelny, steve pikelny, collectable, ">
+    <meta name="title" content="CryptoGodKing">
+    <meta name="og:title" content="CryptoGodKing">
+    <meta name="twitter:title" content="CryptoGodKing">
+    <meta property="og:site_name" content="CryptoGodKing">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://steviep.xyz/cryptogodking">
+    <meta name="twitter:url" content="https://steviep.xyz/cryptogodking">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+
+    <script>
+      function genTokenData(projectNum) {
+        let hash = '0x'
+        for (let i = 0; i < 64; i++) {
+            hash += Math.floor(Math.random() * 16).toString(16)
+        }
+
+        return {
+          hash,
+          tokenId: projectNum * 1000000 + Math.floor(Math.random() * 1000)
+        }
+      }
+      let tokenData = genTokenData(99)
+      // tokenData = {"hash":"0xbcc0187693a0adcaed4dc87aa02f951a0f3585546f513b31e0ec478eba06faa8","tokenId":"99000000"}
+    </script>
+
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'PT Serif', serif;
+        font-family: 'Della Respira', serif;
+        background: #000;
+      }
+      canvas {
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition: 500ms;
+        /*z-index: -1;*/
+        animation: fadein 3s;
+      }
+      #overlay {
+        z-index: 1;
+        background: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+        color: #fff;
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        overflow: scroll;
+        transition: 500ms;
+        animation: fadein 2s;
+        /*padding-bottom: 1em;*/
+      }
+
+      h1, h2 {
+        text-shadow: 8px 8px #000;
+      }
+      h1 {
+        margin: 0;
+        text-align: center;
+        padding: 0.5em;
+        font-size: 70px;
+        text-shadow: 2px 2px #000;
+      }
+
+      h2 {
+        margin-top: 1em;
+        margin-bottom: 0;
+        padding: 1em;
+        text-align: center;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      @keyframes fadein {
+        from { opacity: 0; }
+        to   { opacity: 1; }
+      }
+
+      .mono {
+        font-family: monospace;
+      }
+
+      #header {
+        position: fixed;
+        z-index: 3;
+        padding: 0.5em;
+        width: 100vw;
+        color: #fff;
+        background-color: #000;
+        opacity: 0.75;
+        font-family: monospace;
+        font-size: 16px;
+        text-align: center;
+        border-bottom: 1px dashed #fff;
+        animation: fadeinPartial 1s;
+      }
+
+      .slim {
+        max-width: 800px;
+        margin: auto;
+      }
+
+      @keyframes fadeinPartial {
+        from { opacity: 0; }
+        to   { opacity: 0.75; }
+      }
+
+      @media (max-width: 640px) {
+        h2 {
+          font-size: 18px;
+          margin-top: 1.5em;
+
+        }
+        h1 {
+          font-size: 24px;
+          padding-top: 0;
+        }
+      }
+
+      @media (max-width: 370px) {
+        h2 {
+          font-size: 16px;
+
+        }
+        h1 {
+          font-size: 22px;
+        }
+      }
+    </style>
+
+    <script>
+      const dropTime = new Date('2021-04-11T17:00:00.000Z').getTime()
+      function setScale() {
+        const msLeft = dropTime - Date.now()
+        const totalMsLeft = dropTime - 1617930405623
+        console.log(msLeft/totalMsLeft, (msLeft/totalMsLeft)**2)
+        SCALE = 0.186+50 * (1 - (msLeft/totalMsLeft))**3
+      }
+
+      let SCALE,PRIMARY_C,SECONDARY_C,PYRAMID_1,PYRAMID_2,PYRAMID_3,PYRAMID_4,PYRAMID_5,ANIMATING_PUPIL,PY_EYE,PY_EYE_INVERSE,PY_TOP_CIRCLE,PY_BOTTOM_CIRCLE,PY_TRIANGLE,PY_TRIANGLE_INVERSE,PY_PUPIL,SHOW_TRI,TRI_T1,TRI_T2,TRI_C1,TRI_C2,TRI_TE,TRI_CE,TRI_N,TRI_SPACING,TRI_W,INVERTED_TRI,TRI_CROSS1,TRI_CROSS2,SHOW_COLUMN,COLUMN_T,COLUMN_W,SHOW_WINGS,WING_W,TOP_BOTTOM_ANIMATION,TOP_BOTTOM_MIN,TOP_BOTTOM_MAX,TOP_BOTTOM_W,SIDES_PRIMARY,SIDES_SECONDARY,SIDES_T,SHOW_ARC_CORNERS,ARC_E,ARC_S,ARC_DYN_E,ARC_DYN_S,ARC_E_ANIM,ARC_S_ANIM,ARC_DYN_E_ANIM,ARC_DYN_S_ANIM,ARC_SIZE_ADJ,ARC_W,ARC_SPACING,ARC_INVERTED,ARC_VERTED,ARC_DOUBLE_COEFF,elapsed=0;const prb=_=>rnd()<_,btwn=(_,n)=>_+rnd()*(n-_),sample=_=>_[floor(_.length*rnd())];let hshUsed=0;function hshrnd(_){const n=tokenData.hash.slice(2+hshUsed,2+hshUsed+_),r=parseInt(n,16);return hshUsed+=_,r/16**_}const hshprb=(_,n)=>hshrnd(_)<n;function setColors(){const _=hshrnd(2),n=floor(360*hshrnd(3)),r=floor(360*hshrnd(3));_<.49?(PRIMARY_C=color(`hsb(${n},18.18%,73.33%)`),SECONDARY_C=color(`hsb(${r},100%,26.67%)`)):_<.65?(PRIMARY_C=color(`hsb(${n},100%,100%)`),SECONDARY_C=color("#000")):_<.81?(PRIMARY_C=color("#000"),SECONDARY_C=color(`hsb(${r},100%,100%)`)):_<.97?(PRIMARY_C=color(`hsb(${n},100%,100%)`),SECONDARY_C=color(`hsb(${(180+n)%360},100%,100%)`)):_<.99?(PRIMARY_C=color("#000"),SECONDARY_C=color("#fff")):(PRIMARY_C=color("#fff"),SECONDARY_C=color("#000"))}function setPyramidStyle(){PY_EYE=hshprb(1,.4275);const _=hshprb(1,.5),n=hshprb(1,.5),r=hshprb(1,.5),R=hshrnd(2);PY_TOP_CIRCLE=!PY_EYE&&_,PY_BOTTOM_CIRCLE=!PY_EYE&&n,PY_EYE_INVERSE=!PY_EYE&&!PY_TOP_CIRCLE&&!PY_BOTTOM_CIRCLE&&r,PY_TRIANGLE=R<.85,PY_TRIANGLE_INVERSE=R>.85&&R<.95,PY_PUPIL=hshprb(1,.9),hshprb(1,.65)&&(PYRAMID_1=!0),hshprb(1,.65)&&(PYRAMID_2=!0),hshprb(1,.65)&&(PYRAMID_3=!0),hshprb(1,.65)&&(PYRAMID_4=!0),!hshprb(1,.65)&&(PYRAMID_1||PYRAMID_2||PYRAMID_3||PYRAMID_4)||(PYRAMID_5=!0),hshprb(2,.02)&&(ANIMATING_PUPIL=!0)}function setBackground(){const _=hshrnd(2);if(_<.2)SHOW_TRI=!0,TRI_CROSS1=hshprb(1,.1875),TRI_CROSS2=hshprb(1,TRI_CROSS1?.5:.1875),TRI_T1=hshprb(1,.4275),TRI_T2=hshprb(1,.4275),TRI_C1=hshprb(1,.4275),TRI_C2=hshprb(1,.4275),TRI_TE=hshprb(2,.1),TRI_CE=hshprb(2,.1),TRI_T1||TRI_T2||TRI_C1||TRI_C2||TRI_CROSS1||TRI_CROSS2||(hshprb(1,.5)?TRI_T1=!0:TRI_T2=!0),TRI_T1&&TRI_C1&&TRI_CROSS1||(hshprb(1,.5)?TRI_T1=!0:TRI_C1=!0),TRI_W=1+4*rnd(),TRI_SPACING=14*TRI_W+30*rnd(),TRI_N=floor(700/TRI_SPACING+12*rnd()),INVERTED_TRI=hshprb(1,.3125);else if(_<.9){SHOW_ARC_CORNERS=!0,ARC_SIZE_ADJ=500*rnd()-100;const _=hshrnd(2);_<.6?ARC_VERTED=!0:_<.9?ARC_INVERTED=!0:(ARC_VERTED=!0,ARC_INVERTED=!0),ARC_W=btwn(1,9),ARC_SPACING=ARC_W+5*rnd(),hshprb(1,.125)&&(ARC_DOUBLE_COEFF=rnd()*ARC_W),ARC_E=hshprb(1,.2)?0:720*rnd()-360,ARC_S=hshprb(1,.2)?0:720*rnd()-360;const n=hshrnd(1);ARC_DYN_E=n<.5?0:n<.75?.6*rnd()-.3:160*rnd()-80;const r=hshrnd(1);ARC_DYN_S=r<.5?0:r<.75?.6*rnd()-.3:160*rnd()-80,hshprb(1,.1875)&&(ARC_DYN_S=ARC_DYN_E),hshprb(2,.05)&&(ARC_E_ANIM=btwn(2,20)*(hshprb(1,.5)?1:-1)),hshprb(2,.05)&&(ARC_S_ANIM=btwn(2,20)*(hshprb(1,.5)?1:-1)),hshprb(2,.05)&&(ARC_DYN_E_ANIM=btwn(600,6600)*(hshprb(1,.5)?1:-1)),hshprb(2,.05)&&(ARC_DYN_S_ANIM=btwn(600,6600)*(hshprb(1,.5)?1:-1))}else _<.99&&(COLUMN_W=10+40*rnd(),hshprb(1,.5)&&(SHOW_COLUMN=!0,COLUMN_T=hshprb(1,.6875)?btwn(110,460):btwn(530,660)),hshprb(1,.125)&&(SHOW_WINGS=!0,WING_W=max(COLUMN_W/2,3)),hshprb(1,.125)&&(TOP_BOTTOM_ANIMATION=!0,TOP_BOTTOM_MIN=btwn(390,430),TOP_BOTTOM_MAX=TOP_BOTTOM_MIN+40,TOP_BOTTOM_W=max(COLUMN_W/2,3)),SHOW_WINGS||TOP_BOTTOM_ANIMATION||SHOW_COLUMN?SIDES_T=btwn(590,665):(SIDES_T=btwn(720,820),SIDES_PRIMARY=!0,hshprb(1,.75)&&(SIDES_SECONDARY=!0)),hshprb(2,.05)&&(SIDES_PRIMARY=!0,hshprb(1,.75)&&(SIDES_SECONDARY=!0)))}let audioRunning=!1,audio=null;function setup(){print("ALL HAIL CRYPTOGODKING"),createCanvas(window.innerWidth,window.innerHeight),setScale(),setColors(),setPyramidStyle(),setBackground(),document.body.style.overflow="hidden",document.body.scroll="no"}function draw(){scale(SCALE),translate(width/(2*SCALE),height/(2*SCALE));if(rectMode(CENTER),background(PRIMARY_C),SHOW_TRI&&(drawTri(TRI_N,TRI_SPACING,TRI_W,{showC1:TRI_C1,showT1:TRI_T1,showC2:TRI_C2,showT2:TRI_T2,showCross1:TRI_CROSS1,showCross2:TRI_CROSS2,inverted:INVERTED_TRI}),(TRI_CE||TRI_TE)&&drawEminatingShapeAnimation({strokeW:3,circle:TRI_CE,triangle:TRI_TE})),SHOW_ARC_CORNERS){const _={sAdj:ARC_S_ANIM?elapsed/ARC_S_ANIM:ARC_S,eAdj:ARC_E_ANIM?elapsed/ARC_E_ANIM:ARC_E,dynSAdj:ARC_DYN_S_ANIM?elapsed/ARC_DYN_S_ANIM:ARC_DYN_S,dynEAdj:ARC_DYN_E_ANIM?elapsed/ARC_DYN_E_ANIM:ARC_DYN_E,inverted:ARC_INVERTED,doubleCoeff:ARC_DOUBLE_COEFF,fade:ARC_S_ANIM||ARC_E_ANIM||ARC_DYN_S_ANIM||ARC_DYN_E_ANIM};ARC_VERTED&&drawTriangleCornerArcs(250+ARC_SIZE_ADJ,ARC_SPACING,ARC_W,{..._,inverted:!1}),ARC_INVERTED&&drawTriangleCornerArcs(250+ARC_SIZE_ADJ,ARC_SPACING,ARC_W,{..._,inverted:!0})}SHOW_COLUMN&&drawDoubleEcho(COLUMN_T,SECONDARY_C,PRIMARY_C,COLUMN_W,COLUMN_W/10),SHOW_WINGS&&drawWingAnimation(WING_W),TOP_BOTTOM_ANIMATION&&drawTopBottomAnimation(TOP_BOTTOM_MIN,TOP_BOTTOM_MAX,TOP_BOTTOM_W),SIDES_PRIMARY&&drawEchoPattern(SIDES_T,SECONDARY_C,7),SIDES_SECONDARY&&drawEchoPattern(SIDES_T,PRIMARY_C,1);const _=!(ARC_E_ANIM||ARC_S_ANIM||ARC_DYN_E_ANIM||ARC_DYN_S_ANIM),n=(ARC_S+360)%360,r=(ARC_E+420)%360,R=r-n>0?n<45&&(r<15||r>n+20):r>45&&n<r-20||n>r,e=!PYRAMID_1&&!PYRAMID_3&&!PYRAMID_5&&!SHOW_TRI&&(!SHOW_ARC_CORNERS||_&&!R),C=!PYRAMID_2&&!PYRAMID_4&&SHOW_ARC_CORNERS&&_&&R&&ARC_W>2.5,A={topCircle:PY_TOP_CIRCLE,bottomCircle:PY_BOTTOM_CIRCLE,eye:PY_EYE,inverseEye:PY_EYE_INVERSE,triangle:PY_TRIANGLE,invertedTriangle:PY_TRIANGLE_INVERSE,pupil:PY_PUPIL};PYRAMID_1&&drawPyramid(250,C?PRIMARY_C:SECONDARY_C,45,A),PYRAMID_2&&drawPyramid(250,e?SECONDARY_C:PRIMARY_C,35,A),PYRAMID_3&&drawPyramid(250,C?PRIMARY_C:SECONDARY_C,25,A),PYRAMID_4&&drawPyramid(250,e?SECONDARY_C:PRIMARY_C,15,A),PYRAMID_5&&drawPyramid(250,C?PRIMARY_C:SECONDARY_C,5,A),ANIMATING_PUPIL&&drawEyeAnimation(),elapsed++}function drawTri(_,n,r,{showT1:R,showT2:e,showC1:C,showC2:A,showCross1:I,showCross2:t,inverted:T}={}){noFill(),stroke(SECONDARY_C),strokeWeight(4*r);for(let e=1;e<_;e++)C&&drawCircle(n*e),I&&drawCross((e-1)*r),R&&T?drawInvertedTriangle(n*e):R&&!T&&drawTriangle(n*e);stroke(PRIMARY_C),strokeWeight(r);for(let R=1;R<_;R++)A&&drawCircle(n*R),R%2&&t&&drawCross((R-1)*r),e&&T?drawInvertedTriangle(n*R):e&&!T&&drawTriangle(n*R)}function drawEminatingShapeAnimation({circle:_=!0,triangle:n=!0,n:r=30,maxFrames:R=1200,minFrames:e=600,strokeW:C=10}={}){const A=easeInOut(e,R,.25);noFill(),stroke(PRIMARY_C),strokeWeight(C);for(let R=0;R<r;R++){const r=max(-65*R+A+R,0);n&&drawTriangle(r),_&&drawCircle(r)}stroke(SECONDARY_C),strokeWeight(C/3);for(let R=0;R<r;R++){const r=max(-65*R+A+R,0);n&&drawTriangle(r),_&&drawCircle(r)}}function drawTriangleCornerArcs(_,n,r,{sAdj:R=0,eAdj:e=0,dynSAdj:C=0,dynEAdj:A=0,inverted:I=!1,doubleCoeff:t=0,fade:T=!1}={}){const{tHeight:a,heightOfCenter:s}=triStats(_),E=-_/2,o=I?-s:s,i=_/2,O=I?-s:s,S=I?a-s:-1*(a-s),d=I?radians(0+R):radians(300+R),N=I?radians(60+e):radians(360+e),h=I?radians(120+R):radians(180+R),P=I?radians(180+e):radians(240+e),Y=I?radians(240+R):radians(60+R),M=I?radians(300+e):radians(120+e);noFill(),strokeWeight(r),stroke(SECONDARY_C);for(let r=0;r<_/n;r++){let R=r*A,e=r*C,I=n*r;drawCornerArc(E,o,I,d-e,N-R,a,_,T),drawCornerArc(i,O,I,h-e,P-R,a,_,T),drawCornerArc(0,S,I,Y-e,M-R,a,_,T)}if(t){strokeWeight(t),stroke(PRIMARY_C);for(let r=0;r<_/n;r++){let R=r*A,e=r*C,I=n*r;drawCornerArc(E,o,I-t,d-e,N-R,a,_,T),drawCornerArc(i,O,I-t,h-e,P-R,a,_,T),drawCornerArc(0,S,I-t,Y-e,M-R,a,_,T)}}}const normalize=_=>(_%TWO_PI+TWO_PI)%TWO_PI;function drawCornerArc(_,n,r,R,e,C,A,I=!1){const t=2*r,T=abs(normalize(R)-normalize(e)),a=I&&(T<.1||T>TWO_PI-.1);if(a){push();const _=color(_renderer._cachedStrokeStyle);_.setAlpha(2550*T),stroke(_)}arc(_,n,t,t,R,e),a&&pop()}function drawDoubleEcho(_,n,r,R=3,e=1){drawEchoPattern(_,r,R),drawEchoPattern(_,n,e)}function drawEchoPattern(_,n,r,R=25){strokeWeight(r),stroke(n),noFill();const e=tan(radians(30))*_*(tan(radians(60))-tan(radians(30)));for(let n=0;n<R;n++){const r=_+2*n,R=e/sin(radians(r/2)),C=tan(radians(r/2))*e/2;arc(0,C,R,R,radians(180+r/2),radians(360-r/2),OPEN),arc(0,-C,R,R,radians(0+r/2),radians(180-r/2),OPEN)}}function drawTopBottomAnimation(_,n,r){drawDoubleEcho(easeInOut(_,n,.05),PRIMARY_C,SECONDARY_C,r,r/3)}function drawWingAnimation(_){const n=easeInOut(220,265,.15);drawEchoPattern(n,SECONDARY_C,_),drawEchoPattern(n,PRIMARY_C,_/3)}function drawEyeAnimation(){const _=elapsed%165;drawDoubleEcho(_<82.5?_:165-_,SECONDARY_C,PRIMARY_C),fill(PRIMARY_C),drawCircle(30)}function drawPyramid(_,n,r=45,{topCircle:R=!1,bottomCircle:e=!1,eye:C=!1,inverseEye:A=!1,triangle:I=!1,invertedTriangle:t=!1,pupil:T=!1}={}){noFill(),strokeWeight(r),stroke(n),I&&drawTriangle(_),t&&drawInvertedTriangle(_),C&&drawEye(_,130),A&&drawEye(_,230),T&&point(0,0),R&&drawEyeCircle(_,1),e&&drawEyeCircle(_,0)}function drawCross(_){let x=2*max(width, height);line(-x,_,x,_),line(-x,-_,x,-_),line(_,-x,_,x),line(-_,-x,-_,x)}function drawTriangle(_){const{tHeight:n,heightOfCenter:r}=triStats(_);triangle(-_/2,r,_/2,r,0,-1*(n-r))}function drawInvertedTriangle(_){const{tHeight:n,heightOfCenter:r}=triStats(_),R=-r;triangle(-_/2,R,_/2,R,0,R+n)}function drawEyeCircle(_,n=1){const{centerW:r}=triStats(_),R=r/sin(radians(65)),e=cos(radians((1===n?235:124)/2))*(r/2);circle(0,e,R)}function drawEye(_,n,r=1){const{centerW:R}=triStats(_),e=R*r/sin(radians(n/2)),C=cos(radians(n/2))*(e/2);arc(0,C,e,e,radians(270-n/2),radians(270+n/2),OPEN),arc(0,-C,e,e,radians(90-n/2),radians(90+n/2),OPEN)}function drawCircle(_){circle(0,0,2*tan(radians(30))*_)}function triStats(_){const n=sin(radians(60))*_,r=tan(radians(30))*_/2,R=n-r;return{tHeight:n,heightOfCenter:r,heightDiff:R,centerW:tan(radians(30))*R*2}}function startAudio(){const _=btwn(150,250),n=btwn(1,10),r=_*sample([1.125,1.25,1.3333333,1.5]),R=btwn(1,10);return[createAudioSource(_),createAudioSource(_+n),createAudioSource(r),createAudioSource(r+R)]}function createAudioSource(_){const n=new(window.AudioContext||window.webkitAudioContext),r=n.createOscillator(),R=n.createGain();return r.connect(R),R.connect(n.destination),r.frequency.value=_,r.type="sine",R.gain.value=0,r.start(),{start(){R.gain.setTargetAtTime(.065,n.currentTime,.5)},stop(){R.gain.setTargetAtTime(0,n.currentTime,.5)},freq(_){r.frequency.setTargetAtTime(_,n.currentTime,.5)}}}function easeInOut(_,n,r=1){const R=n-_;return(n-_)*((sin(elapsed*r%R/R*TWO_PI)+1)/2)+_}let seed=parseInt(tokenData.hash.slice(0,16),16);function rnd(){return seed^=seed<<13,seed^=seed>>17,((seed^=seed<<5)<0?1+~seed:seed)%1e3/1e3}
+
+    </script>
+  </head>
+  <body>
+    <div id="overlay">
+      <div class="slim">
+        <h1 id="direction">Pay tribute to CryptoGodKing</h1>
+        <h1 id="timeLeft" class="mono"></h1>
+        <h1><a href="https://artblocks.io/project/44" style="color: #fff" class="mono">artblocks.io</a></h1>
+      </div>
+      <!-- <div class="slim">
+        <h1 id="direction">CryptoGodKing</h1>
+        <h1 style="padding-bottom: 0">4/11</h1>
+        <h1 style="padding-top: 0; margin-left: 14px">13:00 EDT</h1>
+        <h1><a href="https://artblocks.io/project/44" style="color: #fff" class="mono">artblocks.io</a></h1>
+      </div> -->
+    </div>
+
+    <script>
+      const fmt = (n) => {
+        const r = Math.floor(n)
+        if (r < 10) return '0' + r
+        else return '' + r
+      }
+
+      const setDropTime = () => {
+        const now = Date.now()
+        const diff = Math.max(new Date('2021-04-11T17:00:00.000Z').getTime() - now, 0)
+
+        const d = diff / 86400000
+        const h = (d - Math.floor(d)) * 24
+        const m = (h - Math.floor(h)) * 60
+        const s = (m - Math.floor(m)) * 60
+
+
+        const timeLeft = d && h && m && s
+          ? `${fmt(d)}:${fmt(h)}:${fmt(m)}:${fmt(s)}`
+          : '00:00:00:00'
+
+        setScale()
+
+        document.getElementById('timeLeft').innerHTML = timeLeft
+      }
+      setInterval(setDropTime, 1000)
+      setDropTime()
+
+      //0.086
+      //145.8
+
+    </script>
+  </body>
+</html>
+
+
