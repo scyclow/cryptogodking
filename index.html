@@ -2,9 +2,38 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>CryptoGodKing</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="true">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta id="header-theme" name="theme-color" content="#000000">
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=PT+Serif" rel="stylesheet">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Della+Respira" rel="stylesheet"> -->
+
+    <meta charset="utf-8">
+
+    <meta name="description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+    <meta name="twitter:image" content="https://mainnet.oss.nodechef.com/44000000.png">
+    <meta name="og:image" property="og:image" content="https://mainnet.oss.nodechef.com/44000000.png">
+    <meta name="og:image:alt" content="CryptoGodKing #0">
+    <meta name="description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+    <meta name="og:description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+    <meta name="twitter:description" content="All Hail CryptoGodKing, whose holy incarnations shall be available on artblocks.io on 4/11">
+
+    <meta name="keywords" content="art, nft, nfts, NFTs, NFT, crypto, ethereum, bitcoin, blockchain, artblocks, artblocks.io, generative, generative art, algorithmic art, crypto, god, king, cryptogodking, steviep.xyz, steve, pikelny, steve pikelny, collectable, ">
+    <meta name="title" content="CryptoGodKing">
+    <meta name="og:title" content="CryptoGodKing">
+    <meta name="twitter:title" content="CryptoGodKing">
+    <meta property="og:site_name" content="CryptoGodKing">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://steviep.xyz/cryptogodking">
+    <meta name="twitter:url" content="https://steviep.xyz/cryptogodking">
+
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
 
@@ -23,9 +52,6 @@
       let tokenData = genTokenData(99)
       // tokenData = {"hash":"0xbcc0187693a0adcaed4dc87aa02f951a0f3585546f513b31e0ec478eba06faa8","tokenId":"99000000"}
     </script>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoGodKing</title>
 
     <style type="text/css">
       body {
@@ -96,6 +122,11 @@
         animation: fadeinPartial 1s;
       }
 
+      .slim {
+        max-width: 800px;
+        margin: auto;
+      }
+
       @keyframes fadeinPartial {
         from { opacity: 0; }
         to   { opacity: 0.75; }
@@ -131,11 +162,13 @@
   </head>
   <body>
     <div id="header">
-      COMING TO <a href="https://artblocks.io" style="color: #fff">artblocks.io</a> 4/11
+      <a href="https://artblocks.io/project/44" style="color: #fff">artblocks.io</a> drop <span id="timeLeft"></span>
     </div>
     <div id="overlay">
-      <h2>All Hail CryptoGodKing, whose Holy Spirit is opaque to the human eye. While CryptoGodKing itself cannot be owned, each of 999 unique incarnations may belong to a cryptographic soul in the Ethereal realm. When viewed through the material lens of a web browser worshipers may glimpse its essence. Those who retain faith shall be led by an invisible hand towards a higher plane of wealth, whereupon their karmic assets shall yield tremendous spiritual interest. </h2>
-      <h1 id="direction">Press SPACE to sample the voice of CryptoGodKing. <br>Hold ENTER for a truly trancendental experience [FLASH WARNING].</h1>
+      <div class="slim">
+        <h2>All Hail CryptoGodKing, whose Holy Spirit is opaque to the human eye. While CryptoGodKing itself cannot be owned, each of 999 unique incarnations may belong to a cryptographic soul in the Ethereal realm. When viewed through the material lens of a web browser worshipers may glimpse its essence. Those who retain faith shall be led by an invisible hand towards a higher plane of wealth, whereupon their karmic assets shall yield tremendous spiritual interest. </h2>
+        <h1 id="direction">Press SPACE to sample the voice of CryptoGodKing. <br>Hold ENTER for a truly trancendental experience [FLASH WARNING].</h1>
+      </div>
     </div>
 
     <script>
@@ -266,6 +299,32 @@
 
         document.getElementById('direction').innerHTML = 'Click to sample CryptoGodKing. Touch CryptoGodKing to renew its incarnation.'
       }
+
+      const fmt = (n) => {
+        const r = Math.floor(n)
+        if (r < 10) return '0' + r
+        else return '' + r
+      }
+
+      const dropTime = new Date('2021-04-11T17:00:00.000Z').getTime()
+      const setDropTime = () => {
+        const now = Date.now()
+        const diff = Math.max(dropTime - now, 0)
+
+        const d = diff / 86400000
+        const h = (d - Math.floor(d)) * 24
+        const m = (h - Math.floor(h)) * 60
+        const s = (m - Math.floor(m)) * 60
+
+
+        const timeLeft = d && h && m && s
+          ? `${fmt(d)}:${fmt(h)}:${fmt(m)}:${fmt(s)}`
+          : ''
+
+        document.getElementById('timeLeft').innerHTML = timeLeft
+      }
+      setInterval(setDropTime, 1000)
+      setDropTime()
 
     </script>
   </body>
