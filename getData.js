@@ -1,8 +1,8 @@
 const fetch = require('node-fetch')
 
-const tokens = 143
-const start = 44000000
-const end = start + tokens
+const tokens = 180
+const start = 44000143
+const end = start + 37//tokens
 
 let promises = []
 for (let i = start; i < end; i++) {
@@ -13,4 +13,6 @@ for (let i = start; i < end; i++) {
   )
 }
 
-Promise.all(promises).then(r => console.log(JSON.stringify(r)))
+Promise.all(promises)
+  .then(r => console.log(JSON.stringify(r)))
+  .catch(console.error)
