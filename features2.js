@@ -368,7 +368,6 @@ function calculateFeatures(tokenData) {
      }
 
      if (ARCH_W) {
-       addFeaturesReduced(`Financial Burden: ${Math.round(ARCH_W)}`)
        features[`Financial Burden`] = ARCH_W.toFixed(1)
      }
 
